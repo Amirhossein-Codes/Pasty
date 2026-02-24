@@ -46,7 +46,7 @@ app.get("/new", (req, res) => {
 
 app.post('/new', (req, res) => {
     const { content, passwd, duration } = req.body
-    const id = nanoid.nanoid(8)
+    const id = nanoid.nanoid(6)
     const expireTime = Date.now() + (Number(duration) * 1000)
     const hashedPasswd = passwd
     db.run(
