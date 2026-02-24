@@ -1,0 +1,81 @@
+nav {
+    width: 100%;
+    background-color: var(--navigation);
+    height: 4rem;
+    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav a {
+    text-decoration: none;
+    color: cyan;
+    font-size: clamp(.5rem, calc(1rem + 0.2vw), 1.2rem);
+}
+
+nav ul li:first-child {
+    cursor: pointer;
+    display: flex;
+    gap: .5rem;
+    margin-left: 1rem;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    width: 100%;
+}
+
+nav ul {
+    justify-content: space-between;
+}
+
+nav button.darklight {
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2.5rem;
+    min-width: 2.5rem;
+    width: 2.5rem;
+    font-size: 1rem;
+    padding: 0;
+    background-color: cyan;
+    /* box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 1); */
+    transition: transform .5s ease;
+}
+nav button.darklight:hover {
+    transform: rotate(180deg);
+}
+nav button.darklight svg {
+    transform: scale(.8);
+    pointer-events: none;
+}
+
+.btn-new {
+    border-radius: 1rem;
+    padding: .75rem 2rem;
+    background-color: hsl(180, 100%, 35%);
+    color: white;
+    font-weight: bold;
+    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.2);
+}
+
+.btn-new:hover {
+    background-color: hsl(180, 100%, 50%);
+    color: rgb(0, 70, 88);
+}
+
+
+@media screen and (max-width:600px) {
+    li:last-child {
+        display: none;
+    }
+
+    .btn-new {
+        margin-right: 1rem;
+    }
+}

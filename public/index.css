@@ -1,0 +1,487 @@
+* {
+    padding: 0;
+    outline: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+body {
+    transition: background-color .5s ease;
+    font-family: sans-serif;
+    background-color: rgb(40, 42, 54);
+    --placeholder-text: hsl(192, 97%, 71%);
+    --border: hsl(0, 0%, 50%);
+    --textarea: hsl(209, 51%, 22%);
+    --textarea-color: hsl(0, 0%, 100%);
+    --btns: hsl(235, 14%, 15%);
+    --inputs: rgb(27, 57, 85);
+    --input-color: hsl(192, 97%, 71%);
+    --navigation: hsl(231, 20%, 30%);
+}
+
+body.light {
+    background-color: hsl(231, 20%, 30%);
+    --placeholder-text: hsla(192, 50%, 30%);
+    --textarea: hsl(214, 87%, 91%);
+    --textarea-color: black;
+    --btns: hsl(231, 20%, 30%);
+    --inputs: hsl(210, 40%, 80%);
+    --input-color: hsl(192, 97%, 21%);
+    --navigation: hsl(230, 21%, 41%);
+
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+form {
+    display: flex;
+    justify-self: center;
+    align-items: end;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+
+}
+
+.save {
+    background-color: hsl(120, 100%, 50%);
+}
+
+.save:hover {
+    background-color: hsl(120, 100%, 30%);
+}
+
+.clear {
+    background-color: hsl(0, 100%, 50%);
+}
+
+.delete:hover {
+    background-color: hsl(0, 100%, 30%);
+}
+
+.clear:hover {
+    background-color: hsl(0, 100%, 30%);
+}
+
+.copy {
+    background-color: hsl(39, 100%, 50%);
+
+}
+
+.copy:hover {
+    background-color: hsl(39, 100%, 30%);
+}
+
+
+button,
+input[type="reset"] {
+    font-size: clamp(1rem, 1rem + .5vw, 1.5rem);
+    min-width: 50px;
+    border-radius: .5rem;
+    padding: 5px 1.5rem;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+textarea {
+    z-index: 98;
+    border-radius: .5rem;
+    resize: none;
+    color: var(--textarea-color);
+    font-family: monospace;
+    white-space-collapse: preserve;
+    padding: .5rem;
+    height: 100%;
+    width: 100%;
+    background-color: var(--textarea);
+    color: var(--textarea-color);
+    font-size: clamp(1rem, 1rem + .5vw, 1.5rem);
+    cursor: text;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    transition: all .1s ease-out;
+    inset: 0;
+}
+
+textarea.fs {
+    position: absolute;
+    inset: 0;
+}
+
+textarea::selection {
+    background-color: rgb(0, 0, 255);
+}
+
+textarea::placeholder {
+    color: var(--placeholder-text);
+}
+
+
+.btns {
+    border-radius: .5rem;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    display: flex;
+    justify-content: end;
+    background-color: var(--btns);
+    width: 100%;
+    padding: 1rem;
+    /* border: .5px solid var(--border); */
+    border-top: none;
+    gap: 1rem;
+}
+
+
+fieldset {
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    width: 90%;
+    height: 80vh;
+    padding: 1rem;
+    background-color: rgba(17, 34, 34, 0.263);
+}
+
+legend {
+    padding: 0px .5rem;
+    border-radius: .5rem;
+    color: white;
+    font-size: clamp(1rem, 1rem + .5vw, 1.5rem);
+}
+
+.delete {
+    background-color: red;
+}
+
+button.fsb {
+    padding: 0px;
+    position: absolute;
+    right: .5rem;
+    bottom: .5rem;
+    min-width: 3rem;
+    height: 3rem;
+    display: flex;
+    backdrop-filter: blur(2px);
+    background-color: rgb(166, 160, 241, .5);
+    z-index: 99;
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.3);
+}
+
+button.fsb svg {
+    pointer-events: none;
+}
+
+.left {
+    flex-grow: 1;
+    display: flex;
+    gap: 1rem;
+}
+
+.right {
+    display: flex;
+    gap: 1rem;
+}
+
+.lock {
+    position: relative;
+}
+
+.lock svg {
+    position: absolute;
+    left: 0;
+    pointer-events: none;
+}
+
+.lock input {
+    padding-left: 40px;
+}
+
+.expire {
+    position: relative;
+}
+
+.expire svg {
+    pointer-events: none;
+
+    position: absolute;
+    left: 0;
+}
+
+.expire select {
+    padding-left: 40px;
+    appearance: none;
+    width: 200px;
+    cursor: pointer;
+}
+
+.expire::after {
+    content: "";
+    z-index: 999;
+    display: block;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 10px solid var(--input-color);
+    pointer-events: none;
+}
+
+.left svg,
+.left path {
+    fill: var(--input-color);
+}
+
+.duration {
+    font-size: clamp(1rem, 1rem + .5vw, 1.5rem);
+    background-color: red;
+    width: fit-content;
+    border-radius: .5rem;
+    background-color: var(--inputs);
+    color: var(--input-color);
+    padding: .5rem;
+}
+
+.passwd {
+    font-size: clamp(1rem, 1rem + .5vw, 1.5rem);
+    border-radius: .5rem;
+    padding: .5rem;
+    cursor: text;
+    width: 16.5rem;
+    background-color: var(--inputs);
+    color: var(--input-color);
+}
+
+.passwd::placeholder {
+    color: var(--placeholder-text);
+}
+
+.lock,
+button,
+.expire,
+input[type="reset"],
+textarea {
+    transform: scale(1);
+    transition: .075s transform;
+}
+
+.lock:active,
+button:active,
+.expire:active,
+input[type="reset"]:active {
+    transform: scale(.9);
+}
+
+
+.password-form,
+.delete-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.password-form input {
+    background-color: rgb(166, 160, 241, .5);
+    font-size: 2rem;
+    width: 100%;
+}
+
+.password-form p {
+    color: cyan;
+    font-size: 1rem;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+form.password {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    width: fit-content;
+    padding: 2rem;
+    background-color: hsl(209, 11%, 22%);
+    border-radius: 1rem;
+}
+
+.password-form h2 {
+    color: white;
+    margin-bottom: .5rem;
+    width: 100%;
+    font-size: 3rem;
+}
+
+.password-form .error {
+    color: rgb(255, 147, 147);
+    background-color: rgb(80, 0, 0);
+    padding: 5px;
+    border-radius: .5rem;
+    width: 100%;
+    text-align: left;
+    margin-top: 1rem;
+    margin-bottom: 0;
+}
+
+form.password button {
+    background-color: rgb(0, 120, 120);
+    margin-top: 1rem;
+}
+
+footer a {
+    text-decoration: none;
+    color: cyan;
+    white-space-collapse: preserve;
+    cursor: pointer;
+}
+
+.delete-form {
+    position: absolute;
+    z-index: 100;
+    background-color: rgba(255, 0, 0, 0.5);
+    width: 40%;
+    height: 300px;
+    box-shadow: 0px 30px 50px rgba(0, 0, 0, 0.5);
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    pointer-events: none;
+    transition: .2s transform ease-in, .2s opacity ease-in;
+    user-select: none;
+    transform-origin: top;
+    backdrop-filter: blur(10px);
+}
+
+
+
+.delete-form.show {
+    opacity: 1;
+    pointer-events: all;
+    transform: translate(-50%, -50%) scale(1);
+
+}
+
+.delete-form .delete-btns {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    border-radius: 1rem;
+    border: .5px solid black;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+
+}
+
+.delete-form .cancel {
+    background-color: rgb(69, 69, 69, .7);
+    flex-grow: 1;
+    border-radius: 1rem;
+    padding: 2rem;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+
+}
+
+.delete-form .delete {
+    padding: 2rem;
+    border-radius: 1rem;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    flex-grow: 1;
+    background-color: rgba(255, 0, 0, 0.5);
+    border-right: none;
+}
+
+.delete-form .cancel:hover {
+    background-color: rgb(101, 101, 101, .7);
+}
+
+.delete-form h2 {
+    color: hsl(0, 100%, 96%);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    position: absolute;
+    top: 1rem;
+}
+
+
+
+@media screen and (max-width:900px) {
+    .btns {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .right {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .right button,
+    .right input {
+        flex-grow: 1;
+    }
+
+    .left {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .left select {
+        flex-grow: 1;
+    }
+
+    .left input {
+        flex-grow: 2;
+    }
+
+    fieldset {
+        width: 90%;
+    }
+
+    form {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:600px) {
+    .container {
+        width: 100%;
+        display: block;
+        margin-top: 1rem;
+    }
+
+    fieldset {
+        width: 100%;
+        padding: .5rem 0;
+    }
+
+    .delete-form {
+        width: 350px;
+    }
+
+    .left select,
+    .left input {
+        width: 150px;
+    }
+}
+
+
