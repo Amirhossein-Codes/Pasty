@@ -4,7 +4,6 @@ const nanoid = require("nanoid")
 const methodOverride = require("method-override")
 const app = express()
 const sqlite3 = require("sqlite3").verbose()
-const bcrypt = require('bcrypt')
 const db = new sqlite3.Database("./database.db")
 app.set("view engine", "ejs")
 app.set('views', path.join(__dirname, "views"))
@@ -32,11 +31,11 @@ app.get("/new", (req, res) => {
     res.render("pasty/new")
 })
 
-app.post('/new', async (req, res) => {
+app.post('/new', (req, res) => {
     const { content, passwd, duration } = req.body
     const id = nanoid.nanoid(8)
     const expireTime = Date.now() + (Number(duration) * 1000)
-    const hashedPasswd = await bcrypt.hash(passwd, 10)
+    const hashedPasswd = passwd
     db.run(
         `INSERT INTO pasties (id, content, password, expireTime) VALUES (?, ?, ?, ?)`,
         [id, content, hashedPasswd, expireTime],
@@ -78,7 +77,7 @@ app.post("/:id", (req, res) => {
             if (err || !pasty || Date.now() >= pasty.expireTime) {
                 return res.redirect("/expired")
             }
-            const isMatch = await bcrypt.compare(passwd, pasty.password)
+            const isMatch = passwd === pasty.password
             if (isMatch) {
                 res.render("pasty/show", { pasty, passwd, invalidPassword: false })
             } else {
