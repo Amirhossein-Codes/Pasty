@@ -265,7 +265,9 @@ button.fsb svg {
 .passwd::placeholder {
     color: var(--placeholder-text);
 }
-
+.search input::placeholder {
+    color: var(--placeholder-text);
+}
 .lock,
 button,
 .expire,
@@ -284,7 +286,8 @@ input[type="reset"]:active {
 
 
 .password-form,
-.delete-form {
+.delete-form,
+.search {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -292,10 +295,13 @@ input[type="reset"]:active {
     width: 100%;
 }
 
-.password-form input {
+.password-form input,.search input {
     background-color: rgb(166, 160, 241, .5);
     font-size: 2rem;
+    border-radius: .5rem;
     width: 100%;
+    color: cyan;
+    padding: .5rem;
 }
 
 .password-form p {
@@ -305,7 +311,7 @@ input[type="reset"]:active {
     margin-bottom: 1rem;
 }
 
-form.password {
+form.password ,form.search{
     display: flex;
     justify-content: center;
     align-items: end;
@@ -322,7 +328,14 @@ form.password {
     font-size: 3rem;
 }
 
-.password-form .error {
+.search h2 {
+    color: white;
+    margin-bottom: .5rem;
+    width: 100%;
+    font-size: 3rem;
+}
+
+.password-form .error,.search .error {
     color: rgb(255, 147, 147);
     background-color: rgb(80, 0, 0);
     padding: 5px;
@@ -333,9 +346,10 @@ form.password {
     margin-bottom: 0;
 }
 
-form.password button {
+form.password button, form.search button {
     background-color: rgb(0, 120, 120);
     margin-top: 1rem;
+    font-size: 2rem;
 }
 
 footer a {
@@ -482,6 +496,7 @@ footer a {
     .left input {
         width: 150px;
     }
+    .search h2 {
+        font-size: 2rem;
+    }
 }
-
-

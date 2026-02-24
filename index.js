@@ -24,7 +24,20 @@ db.serialize(() => {
 
 
 app.get("/", (req, res) => {
-    res.render("home")
+    res.render("home", { error: null })
+})
+
+app.post("/", (req, res) => {
+    db.get(
+        `SELECT * FROM pasties WHERE id = ?`,
+        [req.body.search],
+        (err, pasty) => {
+            if (err || !pasty) {
+                return res.render("home", { error: "There is no pasty with that ID!" })
+            }
+            res.redirect("/" + pasty.id)
+        }
+    )
 })
 
 app.get("/new", (req, res) => {

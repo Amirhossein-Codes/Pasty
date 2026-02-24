@@ -1,9 +1,18 @@
 <%- include("partials/head", {title:"Pastyjs - Simple Pastebin App"}) %>
 
     <div class="container" style="flex-direction: column">
-        <h1 style="color: white;">Welcome to Pasty.</h1>
-        <hr style="border: 1px solid white; width: 10%;">
-
+        <h1 style="color: white;margin-bottom: 2rem;">Welcome to Pasty.</h1>
+        <hr style="border: 1px solid cyan; width: 90%;margin-bottom: 2rem;">
+        <form action="/" method="post" class="search">
+            <h2>Enter Pasty ID here</h2>
+            <input required="true" type="text" name="search" id="search" placeholder="Insert pasty id...">
+            <% if (error) { %>
+                <p class="error">
+                    <%= error %>
+                </p>
+                <% } %>
+                    <button type="submit">Get pasty</button>
+        </form>
     </div>
 
 
